@@ -1,26 +1,27 @@
-let cats = document.querySelectorAll('.cat'),
-    clicksContainer = document.querySelector('.clicksContainer'),
-    clicks = 0,
-    names = document.querySelectorAll('.name'),
-    catsArray = [
-        './images/2368516302_982f046bb5_o.jpg',
-        './images/5372754294_db6acaa1e5_b.jpg',
-    ],
-    catsNames = [
-        'Cat 1',
-        'Cat 2'
-    ]
-;
-
-clicksContainer.innerHTML = clicks;
-for (let i = 0; i < cats.length; i++) {
-    cats[i].setAttribute("src", catsArray[i]);
-    cats[i].addEventListener('click', () => {
-        clicks ++;
-        clicksContainer.innerHTML = clicks;
-    });
-    for (let i = 0; i < catsNames.length; i++) {
-        names[i].innerHTML = catsNames[i]
+class Cat {
+    constructor(name, src){
+        this.name = name;
+        this.src = src
+    }
+    display() {
+        const img = document.querySelector('img'),
+              name = document.querySelector('.name');
+        img.setAttribute('src', this.src);
+        img.setAttribute('alt', this.name);
+        img.setAttribute('title', this.name);
+        name.innerHTML = this.name
+    }
+    click(){
+        const clicksContainer = document.querySelector('.clicksContainer');
+        let clickCounter = 0;
+        clicksContainer.innerHTML = clickCounter;
+        addEventListener('click', () => {
+            clickCounter ++;
+            clicksContainer.innerHTML = clickCounter;
+        });
     }
 }
 
+const kitty = new Cat('kitty','./images/2368516302_982f046bb5_o.jpg');
+kitty.display();
+kitty.click();
