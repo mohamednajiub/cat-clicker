@@ -1,18 +1,20 @@
 class Cat {
     constructor(name, src){
         this.name = name;
-        this.src = src
+        this.src = src;
+        this.img = `<img src='${this.src}' class ='clicker' alt='${this.name}' title='${this.name}'>`
+        this.display();
     }
     display() {
-        const img = document.querySelector('img'),
-              name = document.querySelector('.name');
-        img.setAttribute('src', this.src);
-        img.setAttribute('alt', this.name);
-        img.setAttribute('title', this.name);
-        name.innerHTML = this.name
+        let container = document.querySelector('.container');
+        container.innerHTML += `
+            ${this.img}
+            <h1> ${this.name} </h1>
+        `
+        this.click();
     }
     click(){
-        const clicksContainer = document.querySelector('.clicksContainer');
+        let clicksContainer = document.querySelector('.clicksContainer');
         let clickCounter = 0;
         clicksContainer.innerHTML = clickCounter;
         addEventListener('click', () => {
@@ -29,12 +31,11 @@ let catsArray = [
 ],
 catsNames = [
     'Kitty',
-    'Votica'
+    'Moala',
 ];
+
+
 for (let i = 0; i < catsArray.length; i++) {
-    let container = document.querySelector('.container');
-    let cats = new Cat(catsNames[i],catsArray[i]);
-        cats.display();
-        cats.click();
-    container.innerHTML = cat;
+    let cat = new Cat(catsNames[i], catsArray[i]); 
+    
 }
