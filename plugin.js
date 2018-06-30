@@ -22,6 +22,19 @@ class Cat {
     }
 }
 
-const kitty = new Cat('kitty','./images/2368516302_982f046bb5_o.jpg');
-kitty.display();
-kitty.click();
+
+let catsArray = [
+    './images/2368516302_982f046bb5_o.jpg',
+    './images/5372754294_db6acaa1e5_b.jpg',
+],
+catsNames = [
+    'Kitty',
+    'Votica'
+];
+for (let i = 0; i < catsArray.length; i++) {
+    let container = document.querySelector('.container');
+    let cats = new Cat(catsNames[i],catsArray[i]);
+        cats.display();
+        cats.click();
+    container.innerHTML = cat;
+}
