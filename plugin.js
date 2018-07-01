@@ -2,25 +2,34 @@ class Cat {
     constructor(name, src){
         this.name = name;
         this.src = src;
-        this.img = `<img src='${this.src}' class ='clicker' alt='${this.name}' title='${this.name}'>`
+        this.clicks = 0;
+        this.counter = `<span class="clickContainer">${this.clicks}</span>`;
+        this.container = `
+            <div class="container">
+                <img src='${this.src}' class ='clicker' alt='${this.name}' title='${this.name}'>
+                <h1> ${this.name} </h1> 
+            </div>
+        `;
         this.display();
     }
     display() {
-        let container = document.querySelector('.container');
-        container.innerHTML += `
-            ${this.img}
-            <h1> ${this.name} </h1>
+        let body = document.querySelector('body');
+        body.innerHTML += `
+            ${this.container}
         `
         this.click();
     }
     click(){
-        let clicksContainer = document.querySelector('.clicksContainer');
-        let clickCounter = 0;
-        clicksContainer.innerHTML = clickCounter;
-        addEventListener('click', () => {
-            clickCounter ++;
-            clicksContainer.innerHTML = clickCounter;
+        this.container += this.counter;
+        let imgs = document.querySelectorAll('.clicker');
+        imgs.forEach((img)=> {
+            img.addEventListener('click', ()=>{
+                this.clicks ++;
+                this.counter = `<span class="clickContainer">${this.clicks}</span>`;
+                console.log(this.clicks);
+            });
         });
+        
     }
 }
 
@@ -36,6 +45,6 @@ catsNames = [
 
 
 for (let i = 0; i < catsArray.length; i++) {
-    let cat = new Cat(catsNames[i], catsArray[i]); 
+    new Cat(catsNames[i], catsArray[i]); 
     
 }
